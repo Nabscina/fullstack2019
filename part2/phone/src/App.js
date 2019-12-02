@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
-
-const Names = ({ persons }) => {
-  return (
-    <div>
-      {persons.map(person => <li key={person.id}>{person.name} {person.number}</li>)}
-    </div>
-  )
-}
+import Names from './Names'
 
 const App = () => {
 
@@ -17,7 +10,7 @@ const App = () => {
       number: '420-1337'
     }
   ])
-  
+
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
 
@@ -63,7 +56,9 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <div><Names persons={persons} /></div>
+      <div>
+        <Names persons={persons} />
+      </div>
     </div>
   )
 

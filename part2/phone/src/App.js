@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import { checkServerIdentity } from 'tls';
 
 const Names = ({ persons }) => {
   return (
     <div>
-      {persons.map(person => <li>{person.name}</li>)}
+      {persons.map(person => <li key={person.id}>{person.name}</li>)}
     </div>
   )
 }
@@ -11,7 +12,10 @@ const Names = ({ persons }) => {
 const App = () => {
 
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    {
+      name: 'Arto Hellas',
+      id: 1
+    }
   ])
   const [newName, setNewName] = useState('')
 
@@ -21,9 +25,12 @@ const App = () => {
       name: newName,
       id: persons.length + 1,
     }
-
-    setPersons(persons.concat(nameObject))
-    setNewName('')
+    if (persons.map(person => person.name).includes(nameObject.name)) {
+      window.alert('That name already exists!')
+    } else {
+      setPersons(persons.concat(nameObject))
+      setNewName('')
+    }
   }
 
   const handleNameChange = (event) => {
@@ -36,7 +43,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
         <div>
-          name: <input value={newName} onChange={handleNameChange}/>
+          name: <input value={newName} onChange={handleNameChange} />
         </div>
         <div>
           <button type="submit">add</button>

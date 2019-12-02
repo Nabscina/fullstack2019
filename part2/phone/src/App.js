@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Names from './Names'
+import Field from './Field'
 
 const App = () => {
 
@@ -45,12 +46,8 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
+        <Field text={'name'} newObj={newName} handleChange={handleNameChange} />
+        <Field text={'number'} newObj={newNumber} handleChange={handleNumberChange} />
         <div>
           <button type="submit">add</button>
         </div>

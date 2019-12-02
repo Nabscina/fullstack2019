@@ -1,17 +1,10 @@
 import React, { useState } from 'react'
 import Names from './Names'
-import Field from './Field'
+import NewListItem from './NewListItem'
 
 const App = () => {
 
-  const [persons, setPersons] = useState([
-    {
-      name: 'Arto Hellas',
-      id: 1,
-      number: '420-1337'
-    }
-  ])
-
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
 
@@ -45,20 +38,14 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addName}>
-        <Field text={'name'} newObj={newName} handleChange={handleNameChange} />
-        <Field text={'number'} newObj={newNumber} handleChange={handleNumberChange} />
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <NewListItem addName={addName} newName={newName} newNumber={newNumber}
+        handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
       <div>
         <Names persons={persons} />
       </div>
     </div>
   )
-
 }
 
 export default App

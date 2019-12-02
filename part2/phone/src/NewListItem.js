@@ -1,43 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Field from './Field'
 
 
-const NewListItem = ({persons, newName, newNumber, setNewName, setNewNumber}) => {
-
-  const addName = (event) => {
-    event.preventDefault()
-    const newObject = {
-      name: newName,
-      id: persons.length + 1,
-      number: newNumber
-    }
-
-    if (persons.map(person => person.name).includes(newObject.name)) {
-      window.alert('That name already exists!')
-    } else {
-      setPersons(persons.concat(newObject))
-      setNewName('')
-      setNewNumber('')
-    }
-  }
-
-  const handleNameChange = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
-  }
-
-  const handleNumberChange = (event) => {
-    console.log(event.target.value)
-    setNewNumber(event.target.value)
-  }
-
+const NewListItem = ({ addName, newName, newNumber, handleNameChange, handleNumberChange }) => {
   return (
     <form onSubmit={addName}>
-      <div>
-        name: <input value={newName} onChange={handleNameChange} />
-      </div>
-      <div>
-        number: <input value={newNumber} onChange={handleNumberChange} />
-      </div>
+      <Field text={'name'} newObj={newName} handleChange={handleNameChange} />
+      <Field text={'number'} newObj={newNumber} handleChange={handleNumberChange} />
       <div>
         <button type="submit">add</button>
       </div>

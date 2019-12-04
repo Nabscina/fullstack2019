@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Names from './Names'
 import NewListItem from './NewListItem'
+import numberService from './services/numbers'
 
 const App = () => {
 
@@ -10,10 +10,10 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
+    numberService
+      .getAll()
+      .then(persons => {
+        setPersons(persons)
       })
   }, [])
 
@@ -28,9 +28,21 @@ const App = () => {
     if (persons.map(person => person.name).includes(newObject.name)) {
       window.alert('That name already exists!')
     } else {
-      setPersons(persons.concat(newObject))
-      setNewName('')
-      setNewNumber('')
+      numberService
+        .create(newObject)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+          setNewNumber('')
+        })
+    }
+  }
+
+  const removeName = (id, name) => {
+    if (window.confirm('Delete ' + name + '?')) {
+      numberService
+        .remove(id)
+        .then()
     }
   }
 
@@ -51,7 +63,7 @@ const App = () => {
         handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
       <div>
-        <Names persons={persons} />
+        <Names persons={persons} removeName={removeName} />
       </div>
     </div>
   )

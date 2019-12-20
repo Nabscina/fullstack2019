@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "And You Stole My Heart",
-    "author": "Starry Hyles",
-    "url": "www.haven123.com",
-    "likes": 23098
+    "title": "Prepare For Unforeseen Consequences",
+    "author": "Nihilanth",
+    "url": "www.hl3.com",
+    "likes": 3
 }

@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Prepare For Unforeseen Consequences",
-    "author": "Nihilanth",
-    "url": "www.hl3.com",
-    "likes": 3
+    "title": "1",
+    "author": "2",
+    "url": "www.3.com",
+    "likes": 4
 }

@@ -16,7 +16,7 @@ const initialBlogs = [
     author: 'Asriel Dreemurr',
     url: 'undertale.lol',
     likes: 2
-  },
+  }
 ]
 
 beforeEach(async () => {
@@ -48,6 +48,29 @@ test('a certain blog is found within blogs', async () => {
   const contents = response.body.map(r => r.title)
 
   expect(contents).toContain('Alpacas Are Cool')
+})
+
+test('a blog is added with http post', async () => {
+
+  await api
+    .post('/api/blogs')
+    .send({
+      title: 'Internally Rotated Shoulder',
+      author: 'Jeff C.',
+      url: 'athleany.net',
+      likes: 500
+    })
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs')
+
+  const contents = response.body.map(r => r.title)
+
+  expect(response.body.length).toBe(initialBlogs.length + 1)
+  expect(contents).toContain(
+    'Internally Rotated Shoulder'
+  )
 })
 
 afterAll(() => {

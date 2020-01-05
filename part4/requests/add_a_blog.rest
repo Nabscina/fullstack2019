@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlYmJsZXMiLCJpZCI6IjVlMGEzZmFmY2E1MjA3MGM2ODU2N2FlMyIsImlhdCI6MTU3Nzc0MTUyM30.c_DsYNTK86kePPZ_WpLWFeAZbiUXbXh9stq-yLAG6IY
 
 {
-    "title": "1",
-    "author": "2",
-    "url": "www.3.com",
-    "likes": 4
+    "title": "Justice Rains From Above",
+    "author": "who was it",
+    "url": "www.popsometags.com",
+    "likes": 400
 }
